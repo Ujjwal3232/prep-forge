@@ -1,6 +1,5 @@
-import { th } from "date-fns/locale";
-import { ThumbsDown } from "lucide-react";
-import mongoose,{Schema} from "mongoose";
+import "server-only";
+import mongoose, { Schema } from "mongoose";
 
 const categorySchema = new Schema({
     title : {
