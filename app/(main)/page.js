@@ -9,31 +9,20 @@ import { ArrowRightIcon } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getCourseList } from "@/queries/courses";
+import CourseCard from "./courses/_components/CourseCard";
+import { getCategories } from "@/queries/categories";
 
 
-const categories = [
-  { id: 1, title: "Design", thumbnail: "/assets/images/categories/design.jpg" },
-  { id: 3, title: "Development", thumbnail: "/assets/images/categories/development.jpg" },
-  { id: 4, title: "Marketing", thumbnail: "/assets/images/categories/marketing.jpg" },
-  { id: 5, title: "IT & Software", thumbnail: "/assets/images/categories/it_software.jpg" },
-  { id: 6, title: "Personal Development", thumbnail: "/assets/images/categories/personal_development.jpg" },
-  { id: 7, title: "Business", thumbnail: "/assets/images/categories/programming.jpg" },
-  { id: 8, title: "Photography", thumbnail: "/assets/images/categories/photography.jpg" },
-  { id: 9, title: "Music", thumbnail: "/assets/images/categories/music.jpg" },
-];
 
-const courses = [
-  { id: 1, title: "Design" },
-  { id: 3, title: "Development" },
-  { id: 4, title: "Marketing" },
-  { id: 5, title: "IT & Software" },
-  { id: 6, title: "Personal Development" },
-  { id: 7, title: "Business" },
-  { id: 8, title: "Photography" },
-  { id: 9, title: "Music" },
-];
+const HomePage = async () => {
 
-const HomePage = () => {
+  const courses = await getCourseList(); 
+  // console.log(courses);
+
+  const categories = await getCategories();
+  // console.log(categories);
+  
   return (
     <div className="bg-slate-950 text-slate-100">
       
@@ -86,12 +75,12 @@ const HomePage = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
           {categories.map((category) => (
-            <Link key={category.id} href="">
+            <Link key={category.id} href={`/categories/${category.id}`}>
               <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500 hover:bg-slate-800 transition">
 
                 <div className="flex flex-col items-center gap-3">
                   <Image
-                    src={category.thumbnail}
+                    src={`/assets/images/categories/${category.thumbnail}`}
                     alt={category.title}
                     width={70}
                     height={70}
@@ -113,53 +102,14 @@ const HomePage = () => {
         <div className="flex justify-between items-center">
           <SectionTitle>Courses</SectionTitle>
 
-          <Link className="text-sm text-slate-400 hover:text-indigo-400 flex items-center gap-1" href="">
+          <Link className="text-sm text-slate-400 hover:text-indigo-400 flex items-center gap-1" href={"/courses"}>
             Browse All <ArrowRightIcon className="w-4" />
           </Link>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {courses.map((course) => (
-            <Link key={course.id} href={`/courses/${course.id}`}>
-              <div className="rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-indigo-500 hover:bg-slate-800 transition group">
-
-                <div className="relative aspect-video">
-                  <Image
-                    src="/assets/images/courses/course_1.png"
-                    alt="course"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="p-4 space-y-2">
-                  <h3 className="font-medium text-slate-200 group-hover:text-indigo-400">
-                    Reactive Accelerator
-                  </h3>
-
-                  <p className="text-xs text-slate-400">Development</p>
-
-                  <div className="flex items-center gap-2 text-xs text-slate-400">
-                    <BookOpen className="w-4" />
-                    4 Chapters
-                  </div>
-
-                  <div className="flex justify-between items-center pt-3">
-                    <span className="font-medium text-white">
-                      {formatPrice(49)}
-                    </span>
-
-                    <Button
-                      variant="ghost"
-                      className="text-xs text-indigo-400 hover:text-white hover:bg-indigo-500/20"
-                    >
-                      Enroll <ArrowRight className="w-3" />
-                    </Button>
-                  </div>
-                </div>
-
-              </div>
-            </Link>
+            <CourseCard key={course.id} course={course} />
           ))}
         </div>
       </section>

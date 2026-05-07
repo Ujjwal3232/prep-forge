@@ -1,0 +1,125 @@
+import { Carousel,CarouselContent,CarouselItem,CarouselNext,CarouselPrevious } from "@/components/ui/carousel";
+import Image from "next/image";
+import Link from "next/link";
+import { BookOpen } from "lucide-react";
+import { formatPrice } from "@/lib/formatPrice";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { SectionTitle } from "@/components/section-title";
+
+const courses = [
+    {
+      id: 1,
+      title: "Design",
+      thumbnail: "/assets/images/categories/design.jpg",
+    },
+  
+    {
+      id: 3,
+      title: "Development",
+      thumbnail: "/assets/images/categories/development.jpg",
+    },
+    {
+      id: 4,
+      title: "Marketing",
+      thumbnail: "/assets/images/categories/marketing.jpg",
+    },
+    {
+      id: 5,
+      title: "IT & Software",
+      thumbnail: "/assets/images/categories/it_software.jpg",
+    },
+    {
+      id: 6,
+      title: "Personal Development",
+      thumbnail: "/assets/images/categories/personal_development.jpg",
+    },
+    {
+      id: 7,
+      title: "Business",
+      thumbnail: "/assets/images/categories/business.jpg",
+    },
+    {
+      id: 8,
+      title: "Photography",
+      thumbnail: "/assets/images/categories/photography.jpg",
+    },
+    {
+      id: 9,
+      title: "Music",
+      thumbnail: "/assets/images/categories/music.jpg",
+    },
+  ];
+
+const RelatedCourses = () => {
+    return (
+        <section className="bg-slate-950">
+        <div className="container">
+          <SectionTitle className="mb-6 text-slate-100">Related Courses</SectionTitle>
+          <Carousel
+            opts={{
+              align: "start",
+            }}
+            className="max-2xl:w-[90%] w-full mx-auto"
+          >
+            <CarouselPrevious />
+            <CarouselNext />
+            <CarouselContent>
+              {courses.map((course) => (
+                <CarouselItem
+                  key={course.id}
+                  className="md:basis-1/2 lg:basis-1/3"
+                >
+                  <Link href={`/courses/${course.id}`}>
+                    <div className="group hover:shadow-sm transition overflow-hidden border border-slate-800 rounded-lg p-3 h-full bg-slate-900 hover:bg-slate-800">
+                      <div className="relative w-full aspect-video rounded-md overflow-hidden">
+                        <Image
+                          src="/assets/images/courses/course_1.png"
+                          alt={"course"}
+                          className="object-cover"
+                          fill
+                        />
+                      </div>
+                      <div className="flex flex-col pt-2">
+                        <div className="text-lg md:text-base font-medium text-slate-100 group-hover:text-indigo-400 line-clamp-2">
+                          Reactive Accelerator
+                        </div>
+                        <p className="text-xs text-slate-400">
+                          Development
+                        </p>
+                        <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
+                          <div className="flex items-center gap-x-1 text-slate-400">
+                            <div>
+                              <BookOpen className="w-4" />
+                            </div>
+                            <span>4 Chapters</span>
+                          </div>
+                        </div>
+ 
+
+                        <div className="flex items-center justify-between mt-4">
+                          <p className="text-md md:text-sm font-medium text-slate-300">
+                            {formatPrice(49)}
+                          </p>
+
+                          <Button
+                            variant="ghost"
+                            className="text-xs text-indigo-400 hover:text-indigo-500 h-7 gap-1"
+                          >
+                            Enroll
+                            <ArrowRight className="w-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </section>
+    );
+};
+
+export default RelatedCourses;

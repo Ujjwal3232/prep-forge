@@ -24,7 +24,7 @@ shadow-[0_0_25px_rgba(99,102,241,0.25)]"
       </header>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 pt-20">{children}</main>
+      <main className='flex-1 pt-20 flex flex-col'> {children} </main>
 
       {/* FOOTER */}
       <SiteFooter />
