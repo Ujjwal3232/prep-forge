@@ -1,15 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    esmExternals: "loose"
+    esmExternals: "loose",
   },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      bson: new URL('./node_modules/bson/lib/bson.js', import.meta.url).pathname
+      bson: new URL("./node_modules/bson/lib/bson.js", import.meta.url)
+        .pathname,
     };
     return config;
-  }
+  },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -3,23 +3,27 @@ import CourseDetails from "./_components/CourseDetails";
 import Testimonials from "./_components/Testimonials";
 import RelatedCourses from "./_components/RelatedCourses";
 import { formatPrice } from "@/lib/formatPrice";
-// const courses = [
-//   {
-//     id: 1,
-//     title: "Design",
-//     thumbnail: "/assets/images/categories/design.jpg",
-//   },
-
-  
-const SingleCoursePage = () => {
+import { getCourseDetails } from "@/queries/courses";
+import { replaceMongoIdInArray } from "@/lib/convertData";
+ 
+const SingleCoursePage = async ({ params: {id} }) => {
+//this id re
+    const course = await getCourseDetails(id);
+    
   return (
     <>
-        <CourseDetailsIntro />
+        <CourseDetailsIntro 
+        title={course?.title}
+        subtitle={course?.subtitle}
+        thumbnail={course?.thumbnail}
+      />
  
 
-        <CourseDetails/>                
+        <CourseDetails course={course} />               
 
-        <Testimonials/> 
+        {
+      course?.testimonials && <Testimonials testimonials={replaceMongoIdInArray(course?.testimonials)} />   
+    } 
 
         <RelatedCourses/>                  
     </>
