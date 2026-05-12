@@ -56,10 +56,10 @@ const MobileNav = ({ items, children }) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 mt-4 bg-slate-900 text-pink-100 border border-purple-700" align="end">
               <DropdownMenuItem className="cursor-pointer hover:bg-gradient-to-r hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600">
-                <Link href="">Student</Link>
+                <Link href="/register/student">Student</Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer hover:bg-gradient-to-r hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600">
-                <Link href="">Instructor</Link>
+                <Link href="/register/instructor">Instructor</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

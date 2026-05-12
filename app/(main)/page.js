@@ -45,14 +45,14 @@ const HomePage = async () => {
 
           <div className="flex justify-center gap-4 flex-wrap">
             <Link
-              href=""
+              href="/courses"
               className="px-6 py-3 rounded-md bg-indigo-500 hover:bg-indigo-600 text-white font-medium transition"
             >
               Explore Now
             </Link>
 
             <Link
-              href=""
+              href="/register/instructor"
               className="px-6 py-3 rounded-md border border-slate-700 hover:bg-slate-800 text-slate-300 transition"
             >
               Become Instructor
