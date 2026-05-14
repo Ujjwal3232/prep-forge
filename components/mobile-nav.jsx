@@ -1,4 +1,4 @@
-import React from "react"; 
+import React, { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
 
 import { X } from "lucide-react";
@@ -13,9 +13,17 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useLockBody } from "@/hooks/use-lock-body";
 import Link from "next/link";
+import { useSession , signOut } from 'next-auth/react';
 
 const MobileNav = ({ items, children }) => {
-  useLockBody();
+   useLockBody(); 
+
+    const {data:session} = useSession();
+    const [loginSession, setLoginSession] = useState(null);
+    useEffect(() => {
+        console.log("Test information");
+        setLoginSession(session);
+    },[session]);
 
   return (
     <div
@@ -38,6 +46,8 @@ const MobileNav = ({ items, children }) => {
             </Link>
           ))}
         </nav>
+
+        {!loginSession && (
         <div className="items-center gap-3 flex lg:hidden">
           <Link
             href="/login"
@@ -64,6 +74,8 @@ const MobileNav = ({ items, children }) => {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+        )}
+
       </div>
     </div>
   );
