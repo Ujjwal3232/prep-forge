@@ -109,11 +109,12 @@ export function LoginForm() {
 
         <div className="mt-4 text-center text-sm text-slate-400">
           Don&apos;t have an account?{" "}
-          <Link
-            href="register"
-            className="underline text-indigo-400 hover:text-indigo-500"
-          >
-            Register
+          <Link href="/register/instructor" className="underline">
+          Instructor
+          </Link>
+          {" "} or {" "}
+          <Link href="/register/student" className="underline">
+          Student
           </Link>
         </div>
         </form>

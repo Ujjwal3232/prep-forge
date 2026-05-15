@@ -22,23 +22,25 @@ const userSchema = new Schema({
     required: true,
     type: String,
   },
-  phone:{
-        required: false,
-        type: String
+  phone: {
+    required: false,
+    type: String,
   },
   bio: {
     type: String,
+    default: "",
   },
   socialMedia: {
     type: Object,
   },
   profilePicture: {
-    type: String,
+      type: String,
+      default: "https://i.pravatar.cc"
   },
   designation: {
     type: String,
+    default: ""
   },
 });
 
-export const User =
-  mongoose.models.User || mongoose.model("User", userSchema);
+export const User = mongoose.models.User || mongoose.model("User", userSchema);

@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { formatPrice } from "@/lib/formatPrice";
 import { BookOpen } from "lucide-react";
+import EnrollCourse from '@/components/enroll-course';
 
 const CourseCard = ({ course }) => {
   return (
+    
     <Link key={course.id} href={`/courses/${course.id}`}>
       <div className="group transition overflow-hidden border border-slate-800 rounded-xl p-3 h-full bg-slate-900 hover:border-indigo-500 hover:bg-slate-800">
         
@@ -42,13 +44,7 @@ const CourseCard = ({ course }) => {
               {formatPrice(course?.price)}
             </p>
 
-            <Button
-              variant="ghost"
-              className="text-xs text-indigo-400 hover:text-white hover:bg-indigo-500/20 h-7 gap-1"
-            >
-              Enroll
-              <ArrowRight className="w-3" />
-            </Button>
+           <EnrollCourse asLink={true} />
           </div>
 
         </div>
