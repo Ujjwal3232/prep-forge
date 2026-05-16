@@ -90,7 +90,7 @@ function Profile() {
 
 					<Button
 						className="mt-5 bg-indigo-400 hover:bg-indigo-500 text-slate-950 font-medium"
-						asChild
+						
 					>
 						<input type="submit" name="send" value="Save Changes" />
 					</Button>

@@ -9,7 +9,7 @@ import EnrollCourse from '@/components/enroll-course';
 
 const CourseCard = ({ course }) => {
   return (
-    
+    <div>
     <Link key={course.id} href={`/courses/${course.id}`}>
       <div className="group transition overflow-hidden border border-slate-800 rounded-xl p-3 h-full bg-slate-900 hover:border-indigo-500 hover:bg-slate-800">
         
@@ -38,18 +38,20 @@ const CourseCard = ({ course }) => {
               <span>{course?.modules?.length} Chapters</span>
             </div>
           </div>
+            </div>
+        </div>
+      </Link>
+
 
           <div className="flex items-center justify-between mt-4">
             <p className="text-md md:text-sm font-medium text-white">
               {formatPrice(course?.price)}
             </p>
 
-           <EnrollCourse asLink={true} />
+            <EnrollCourse asLink={true} courseId={course?.id}  />
           </div>
-
-        </div>
       </div>
-    </Link>
+        
   );
 };
 

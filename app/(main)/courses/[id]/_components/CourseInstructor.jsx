@@ -17,7 +17,7 @@ const CourseInstructor = async ({course}) => {
 
   const courseDetailsByInstructor = await getCourseDetailsByInstructor(instructor._id.toString());
 
-  console.log(courseDetailsByInstructor);
+  //console.log(courseDetailsByInstructor);
 
   return (
     <div className="bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-md p-8">
