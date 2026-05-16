@@ -31,15 +31,38 @@ const userSchema = new Schema({
     default: "",
   },
   socialMedia: {
-    type: Object,
+    github: {
+      type: String,
+      default: "",
+    },
+
+    linkedin: {
+      type: String,
+      default: "",
+    },
+
+    twitter: {
+      type: String,
+      default: "",
+    },
+
+    portfolio: {
+      type: String,
+      default: "",
+    },
+
+    youtube: {
+      type: String,
+      default: "",
+    },
   },
   profilePicture: {
-      type: String,
-      default: "https://i.pravatar.cc"
+    type: String,
+    default: "https://i.pravatar.cc",
   },
   designation: {
     type: String,
-    default: ""
+    default: "",
   },
 });
 

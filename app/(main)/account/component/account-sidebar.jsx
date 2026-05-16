@@ -6,8 +6,19 @@ import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import Link from "next/link";
 import Menu from "./account-menu";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import { getUserByEmail } from "@/queries/users";
 
-const AccountSidebar = () => {
+const AccountSidebar = async () => {
+  const session = await auth();
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  const loggedInUser = await getUserByEmail(session?.user?.email);
+  //console.log(loggedInUser);
+
   return (
     <div className="lg:w-1/4 md:px-3">
       <div className="relative">
@@ -23,10 +34,10 @@ const AccountSidebar = () => {
             <div>
               <div className="relative size-28 mx-auto">
                 <Image
-                  src="/assets/images/profile.jpg"
+                  src={loggedInUser?.profilePicture}
                   className="rounded-full shadow ring-4 ring-slate-800"
                   id="profile-banner"
-                  alt="profile-image"
+                  alt={`${loggedInUser?.firstName}`}
                   width={112}
                   height={112}
                 />
@@ -39,10 +50,19 @@ const AccountSidebar = () => {
 
               <div className="mt-4">
                 <h5 className="text-lg font-semibold text-slate-100">
-                  Jenny Jimenez
+                  {`${loggedInUser?.firstName} ${loggedInUser?.lastName}`}
                 </h5>
 
-                <p className="text-slate-400">jennyhot@hotmail.com</p>
+                <p className="text-slate-400"> 
+
+                    {loggedInUser?.email}
+
+                </p>
+                <p className="text-slate-700 text-sm font-bold">
+
+                  Role: {loggedInUser?.role}
+
+                </p>
               </div>
             </div>
           </div>
