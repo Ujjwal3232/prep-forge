@@ -1,30 +1,25 @@
 import React from "react";
-import {
-  Presentation,
-  UsersRound,
-  Star,
-  MessageSquare,
-} from "lucide-react";
+import { Presentation, UsersRound, Star, MessageSquare } from "lucide-react";
 
 import Image from "next/image";
-import { getCourseDetailsByInstructor } from '@/queries/courses';
+import { getCourseDetailsByInstructor } from "@/queries/courses";
+import Link from "next/link";
 
-
-const CourseInstructor = async ({course}) => {
+const CourseInstructor = async ({ course }) => {
   const instructor = course?.instructor;
 
   const fullName = `${instructor?.firstName} ${instructor?.lastName}`;
 
-  const courseDetailsByInstructor = await getCourseDetailsByInstructor(instructor._id.toString());
+  const courseDetailsByInstructor = await getCourseDetailsByInstructor(
+    instructor._id.toString(),
+  );
 
   //console.log(courseDetailsByInstructor);
 
   return (
     <div className="bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-md p-8">
-      
       {/* Top Section */}
       <div className="flex flex-col md:flex-row gap-10 items-start mb-8">
-        
         {/* Image */}
         <div className="h-[310px] w-[270px] flex-none overflow-hidden rounded-lg">
           <Image
@@ -49,12 +44,14 @@ const CourseInstructor = async ({course}) => {
           <ul className="space-y-4">
             <li className="flex items-center gap-3 text-slate-300">
               <Presentation className="text-indigo-400" />
-              <div>{courseDetailsByInstructor?.courses}  Courses</div>
+              <div>{courseDetailsByInstructor?.courses} Courses</div>
             </li>
 
             <li className="flex items-center gap-3 text-slate-300">
               <UsersRound className="text-indigo-400" />
-              <div>{courseDetailsByInstructor?.enrollments}+ Student Learned</div>
+              <div>
+                {courseDetailsByInstructor?.enrollments}+ Student Learned
+              </div>
             </li>
 
             <li className="flex items-center gap-3 text-slate-300">
@@ -66,15 +63,18 @@ const CourseInstructor = async ({course}) => {
               <Star className="text-indigo-400" />
               <div>{courseDetailsByInstructor?.ratings} Average Rating</div>
             </li>
+            <li className="flex space-x-3">
+              <Link href={`/inst-profile/${instructor?._id}`}>
+                <div className="text-red-600 font-bold">See Profile</div>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
 
       {/* Bio Below Both */}
       <div className="border-t border-slate-800 pt-6">
-        <p className="text-slate-400 leading-8">
-          {instructor?.bio}
-        </p>
+        <p className="text-slate-400 leading-8">{instructor?.bio}</p>
       </div>
     </div>
   );
