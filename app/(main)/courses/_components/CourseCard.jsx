@@ -9,9 +9,9 @@ import EnrollCourse from '@/components/enroll-course';
 
 const CourseCard = ({ course }) => {
   return (
-    <div>
+          <div className="group transition overflow-hidden border border-slate-800 rounded-xl p-3  bg-slate-900 hover:border-indigo-500 hover:bg-slate-800">
+
     <Link key={course.id} href={`/courses/${course.id}`}>
-      <div className="group transition overflow-hidden border border-slate-800 rounded-xl p-3 h-full bg-slate-900 hover:border-indigo-500 hover:bg-slate-800">
         
         <div className="relative w-full aspect-video rounded-md overflow-hidden">
           <Image
@@ -39,7 +39,7 @@ const CourseCard = ({ course }) => {
             </div>
           </div>
             </div>
-        </div>
+        
       </Link>
 
 

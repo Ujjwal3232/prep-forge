@@ -65,7 +65,7 @@ const CourseInstructor = async ({ course }) => {
             </li>
             <li className="flex space-x-3">
               <Link href={`/inst-profile/${instructor?._id}`}>
-                <div className="text-red-600 font-bold">See Profile</div>
+                <div className="text-indigo-600 font-bold">See Profile</div>
               </Link>
             </li>
           </ul>
